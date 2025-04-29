@@ -31,3 +31,34 @@ permalink: /
 <p>Тут зібрані всі сторінки та їхні зв'язки, візуалізовані у вигляді графа</p>
 
 {% include notes_graph.html %}
+
+<strong>Повний список нотаток</strong>
+
+<table style="text-align: left;">
+  <thead>
+    <tr>
+      <th>Назва</th>
+      <th>Ключові слова</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% assign sorted_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
+    {% for note in sorted_notes %}
+      <tr>
+        <td>
+          <a class="internal-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
+        </td>
+        <td>
+          {% if note.tags %}
+            {% for tag in note.tags %}
+              #{{ tag }}{% unless forloop.last %} {% endunless %}
+            {% endfor %}
+          {% else %}
+            —
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
