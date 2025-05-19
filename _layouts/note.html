@@ -5,10 +5,11 @@ layout: default
 <article>
   <div>
     <h1>{{ page.title }}</h1>
-    <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{% if page.type != 'pages' %}
-      {{ page.last_modified_at | date: "%Y-%m-%d" }}
-      {% endif %}
-    </time>
+    <p style="color: gray; font-size: 0.9em;">
+      {% for tag in page.tags %}
+        #{{ tag }}{% unless forloop.last %} {% endunless %}
+      {% endfor %}
+    </p>
   </div>
   <img 
     alt="Hits" 
