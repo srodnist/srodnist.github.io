@@ -12,36 +12,13 @@ permalink: /
 # Ласкаво просимо!
 
 Вся інформація, яка розміщена на цьому порталі **обовʼязково** має посилання на **джерела**.   
-Кожна сторінка - це окрема **нотатка**.  
+Кожна сторінка - це окрема **[нотатка](#нотатки)**.  
 Нотатки поєднані між собою, відповідно можуть посилатись одна на одну.  
-[Граф](#граф) - візуально відображає сукупність об'єктів(нотаток) із зв'язками між ними.  
+**[Граф](#граф)**- візуально відображає сукупність об'єктів(нотаток) із зв'язками між ними.  
 
 <p style="padding: 3em 1em; background: #f5f7ff; border-radius: 4px;">
   Зазирніть на [[філософія|першу сторінку]] та відкривайте для себе світ філософії.
 </p>
-
-### Нещодавно оновлені нотатки
-
-<ul>
-  {% assign recent_notes = site.notes | sort: "last_modified_at_timestamp" | reverse %}
-  {% for note in recent_notes limit: 5 %}
-    <li>
-      {{ note.last_modified_at | date: "%Y-%m-%d" }} — <a class="internal-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
-
-<style>
-  .wrapper {
-    max-width: 46em;
-  }
-</style>
-
-## Граф
-
-<p>Тут зібрані всі сторінки та їхні зв'язки, візуалізовані у вигляді графа</p>
-
-{% include notes_graph.html %}
 
 ## Нотатки
 
@@ -59,7 +36,7 @@ permalink: /
         <td>
           <a class="internal-link" href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a>
         </td>
-        <td>
+        <td style="color: gray; font-size: 0.9em;">
           {% if note.tags %}
             {% for tag in note.tags %}
               #{{ tag }}{% unless forloop.last %} {% endunless %}
@@ -72,4 +49,10 @@ permalink: /
     {% endfor %}
   </tbody>
 </table>
+
+## Граф
+
+<p>Тут зібрані всі нотатки та їхні зв'язки, візуалізовані у вигляді графа, з яким можна взаємодіяти.</p>
+
+{% include notes_graph.html %}
 
